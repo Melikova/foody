@@ -1,0 +1,120 @@
+.header-bg {
+    background: #27283C;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 13px 12px 21px;
+    border-radius: 0 0 20px 20px;
+    margin-bottom: 16px;
+}
+
+.header-right-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-right-first {
+    margin-right: 22px;
+}
+
+.add-product-btn {
+    display: flex;
+    align-items: center;
+    padding: 6px 6px 4px 10.74px;
+    justify-content: center;
+    border-radius: 14px;
+    border: 2px solid #C035A2;
+    background: #C035A2;
+    box-shadow: 0px 4px 4px 0px rgba(39, 174, 96, 0.20);
+    color: #FFF;
+    text-align: center;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0.25px;
+}
+
+.header-right-second {
+    margin-right: 22px
+}
+
+.language-btn {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.header-right-third {
+    display: flex;
+    align-items: center;
+}
+
+.header-right-third :nth-child(1) {
+    border-radius: 30px;
+    margin-right: 10px;
+}
+
+.header-right-third :nth-child(2) {
+    color: rgba(245, 245, 245, 0.87);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0.15px;
+}
+
+.add-product-mob-btn {
+    display: none;
+}
+
+.ham-menu {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .header-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .ham-menu {
+        display: block;
+        margin-right: 5px;
+    }
+
+    .header-left :nth-child(2) {
+        color: #F5F5F5;
+        text-align: center;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 800;
+        line-height: 24px;
+        letter-spacing: 0.72px;
+    }
+
+    .add-product-btn {
+        display: none;
+    }
+
+    .add-product-mob-btn {
+        display: block;
+        width: 30px;
+        height: 30px;
+        padding-top: 4px;
+    }
+
+    .header-right-third :nth-child(2) {
+        display: none;
+    }
+
+    .header-right-third :nth-child(1) {
+        width: 30px;
+        height: 30px;
+    }
+
+    .header-right-first {
+        margin-right: 10px;
+    }
+
+}

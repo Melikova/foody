@@ -1,0 +1,19 @@
+.category-btn {
+    border-radius: 14px;
+    background: #5A5B70;
+    width: 199px;
+    height: 35px;
+    padding: 0 16px 0 18px;
+    color: #F2F2F2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.14px;
+}
+
+@media screen and (max-width: 768px) {
+    .category-btn {
+        border-radius: 4px;
+    }
+}
