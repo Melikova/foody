@@ -87,6 +87,7 @@
     .cancel-btn {
         width: 257px;
         margin-top: 10px;
+        margin-right: 0;
     }
 
     .delete-btn {
@@ -95,7 +96,17 @@
     }
 
     #modal-position {
-        width: 80% !important;
+        width: 90% !important;
         height: 292px !important;
+    }
+
+    .modal-head {
+        color: #000;
+        font-family: "Open Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 13px;
     }
 }

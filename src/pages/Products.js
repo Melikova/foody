@@ -14,11 +14,10 @@ const Products = () => {
                 <ProductContainer>
                     <CategoryType />
                     <ProductItems />
-                    <Modal />
+                    {/* <Modal /> */}
                     {/* <EditModal /> */}
                 </ProductContainer>
             </AdminLayout>
-
         </>
     )
 }

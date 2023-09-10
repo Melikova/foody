@@ -10,7 +10,9 @@ const EditModal = () => {
     <>
       <div className={styles.overlay}>
         <div className={styles['editmodal-container']}>
-
+          <div className={styles['editmodal-head']}>
+            <h3>Add restaurants</h3>
+          </div>
           <div className={styles["editmodal-top"]}>
             <div className={styles['editmodal-left-contain']}>
               <div className={styles['editmodal-left-top']}>
@@ -25,6 +27,9 @@ const EditModal = () => {
               </div>
             </div>
             <div className={styles['editmodal-right-contain']}>
+              <div className={styles['mob-upload-text']}>
+                <span>Upload your restaurants image</span>
+              </div>
               <div className={styles['editmodal-right-top']}>
                 <button>
                   <img src={uploadImg} alt="upload" />
@@ -32,6 +37,11 @@ const EditModal = () => {
                 </button>
               </div>
               <div className={styles['editmodal-right-bot']}>
+                <div className={styles['mob-restaurant-info']}>
+                  <span>
+                    Add your Restaurants description and necessary information
+                  </span>
+                </div>
                 <form>
                   <div className={styles['product-name']}>
                     <label htmlFor="name">Name</label>
@@ -61,13 +71,12 @@ const EditModal = () => {
 
           <div clasName={styles['close-contain']}>
             <button className={styles['close-btn']}>
-              <img src={closeBtn} alt="close-button" />
+              <img className={styles['close-btn-img']} src={closeBtn} alt="close-button" />
             </button>
           </div>
 
         </div>
       </div>
-
     </>
   )
 }

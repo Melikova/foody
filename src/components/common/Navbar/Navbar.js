@@ -20,42 +20,42 @@ const Navbar = () => {
           <ul>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/dashboard' className={styles['navbar']}>
                 <img src={dashboard} alt='dashboard' />
                 Dashboard
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/products' className={styles['navbar']}>
                 <img src={products} alt='products' />
                 Products
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/restaurants' className={styles['navbar']}>
                 <img src={restaurants} alt='restaurants' />
                 Restaurants
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/category' className={styles['navbar']}>
                 <img src={category} alt='category' />
                 Category
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/orders' className={styles['navbar']}>
                 <img src={orders} alt='orders' />
                 Orders
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={styles['navbar']}>
+              <NavLink to='/offer' className={styles['navbar']}>
                 <img src={offer} alt='offer' />
                 Offer
               </NavLink>

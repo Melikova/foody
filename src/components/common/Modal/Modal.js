@@ -14,6 +14,7 @@ const Modal = () => {
                         <button className={styles['cancel-btn']}>cancel</button>
                         <button className={styles['delete-btn']}>delete</button>
                     </div>
+
                 </div>
 
             </div>
