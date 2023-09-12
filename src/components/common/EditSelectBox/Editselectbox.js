@@ -44,7 +44,9 @@ export default function Example() {
     const [selected, setSelected] = useState(people[0])
 
     return (
-        <Listbox value={selected} onChange={setSelected}>
+
+        <>
+             <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (
                 <>
                     <div className="relative top-4">
@@ -94,7 +96,6 @@ export default function Example() {
                                                             'absolute inset-y-0 right-0 flex items-center pr-4'
                                                         )}
                                                     >
-                                                        {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                                                     </span>
                                                 ) : null}
                                             </>
@@ -107,5 +108,7 @@ export default function Example() {
                 </>
             )}
         </Listbox>
+        </>
+   
     )
 }

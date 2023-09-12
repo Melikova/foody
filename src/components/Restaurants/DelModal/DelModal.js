@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from 'components/common/Modal/modal.module.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { closeModal } from 'redux/features/modalSlice';
+import { closeDelModal } from 'redux/features/modalSlice';
 
 const Modal = () => {
 
-    const selModal = useSelector((state) => state.modal.modalActive);
+    const selDelModal = useSelector((state) => state.modal.delModal);
     const dispatch = useDispatch()
 
     return (
         <>
-            <div className={selModal ? styles['show-modal-container'] : styles['modal-container']}>
+            <div className={selDelModal ? styles['show-modal-container'] : styles['modal-container']}>
 
                 <div className={styles.overlay}>
 
@@ -19,7 +19,7 @@ const Modal = () => {
                         <span className={styles["modal-head"]}>Are you sure it's deleted?</span>
                         <span className={styles["modal-para"]}>Attention! If you delete this product, it will not come back...</span>
                         <div className='max-md:flex max-md:flex-col-reverse'>
-                            <button onClick={() => dispatch(closeModal())} className={styles['cancel-btn']}>cancel</button>
+                            <button onClick={() => dispatch(closeDelModal())} className={styles['cancel-btn']}>cancel</button>
                             <button className={styles['delete-btn']}>delete</button>
                         </div>
 

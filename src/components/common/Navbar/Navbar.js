@@ -10,6 +10,9 @@ import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg'
 
 const Navbar = () => {
+
+
+
   return (
     <>
 
@@ -20,49 +23,49 @@ const Navbar = () => {
           <ul>
 
             <li>
-              <NavLink to='/dashboard' className={styles['navbar']}>
+              <NavLink to='/dashboard' id={styles['navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={dashboard} alt='dashboard' />
                 Dashboard
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/products' className={styles['navbar']}>
+              <NavLink to='/products' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={products} alt='products' />
                 Products
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/restaurants' className={styles['navbar']}>
+              <NavLink to='/restaurants' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={restaurants} alt='restaurants' />
                 Restaurants
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/category' className={styles['navbar']}>
+              <NavLink to='/category' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={category} alt='category' />
                 Category
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/orders' className={styles['navbar']}>
+              <NavLink to='/orders' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={orders} alt='orders' />
                 Orders
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/offer' className={styles['navbar']}>
+              <NavLink to='/offer' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
                 <img src={offer} alt='offer' />
                 Offer
               </NavLink>
             </li>
 
             <li>
-              <NavLink className={`${styles['navbar']} ${styles['navbar-last']}`}>
+              <NavLink id={styles['navbar']} className={styles['navbar-last']}>
                 <img src={logout} alt='logout' />
                 Logout
               </NavLink>

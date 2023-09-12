@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from 'components/common/Header/header.module.css'
 import logo from 'assets/icons/logo.svg'
 import plusBtn from "assets/icons/plusBtn.svg"
 import mobPlusBtn from 'assets/icons/mobPlusBtn.svg'
-import ukFlag from 'assets/icons/countryFlags/uk.svg'
 import admin from 'assets/icons/admin.svg'
 import hamburger from 'assets/icons/hamburger.svg'
 import dashboard from 'assets/icons/navIcons/dashIcon.svg';
@@ -16,13 +15,15 @@ import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg';
 import mobFoodyLogo from 'assets/icons/mobFoodyLogo.svg';
 import leftArrow from 'assets/icons/leftArrow.svg';
-
+import { useDispatch } from 'react-redux';
+import { addProductModal } from 'redux/features/modalSlice';
 
 const Header = () => {
 
+  const dispatch = useDispatch();
   const navbar = useRef();
 
-  const handleHamMenu = () => {
+  const openHamMenu = () => {
     navbar.current.style = 'left: 0'
   }
 
@@ -30,15 +31,15 @@ const Header = () => {
     navbar.current.style = 'left: -500px'
   }
 
-
   return (
+
     <>
       <header>
 
         <div className={styles['header-bg']}>
 
           <div className={styles['header-left']}>
-            <button onClick={() => handleHamMenu()} className={styles['ham-menu']}>
+            <button onClick={() => openHamMenu()} className={styles['ham-menu']}>
               <img src={hamburger} alt="hamburger-menu" />
             </button>
             <Link>
@@ -49,7 +50,7 @@ const Header = () => {
           <div className={styles['header-right-container']}>
 
             <div className={styles['header-right-first']}>
-              <button className={styles['add-product-btn']}>
+              <button onClick={() => dispatch(addProductModal())} className={styles['add-product-btn']}>
                 <img src={plusBtn} alt='plus-button' />
                 ADD PRODUCT
               </button>
@@ -84,51 +85,50 @@ const Header = () => {
 
           <nav>
             <ul className={styles['mob-navbar-contain']}>
-
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/dashboard' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={dashboard} alt='dashboard' />
                   Dashboard
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/products' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={products} alt='products' />
                   Products
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/restaurants' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={restaurants} alt='restaurants' />
                   Restaurants
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/category' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={category} alt='category' />
                   Category
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/orders' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={orders} alt='orders' />
                   Orders
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/offer' id={styles['mob-navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
                   <img src={offer} alt='offer' />
                   Offer
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={`${styles['mob-navbar']} ${styles['mob-navbar-last']}`}>
+                <NavLink to='/logout' id={styles['mob-navbar']} className={styles['mob-navbar-last']}>
                   <img src={logout} alt='logout' />
                   Logout
                 </NavLink>

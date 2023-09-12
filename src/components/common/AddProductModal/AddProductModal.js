@@ -6,39 +6,39 @@ import uploadImg from 'assets/icons/upload.svg'
 import closeBtn from 'assets/icons/closeBtn.svg'
 import Editselectbox from 'components/common/EditSelectBox/Editselectbox';
 import { useSelector, useDispatch } from 'react-redux'
-import { closeModalEdit } from 'redux/features/modalSlice'
+import { closeModalEdit, closeProductModal } from 'redux/features/modalSlice'
 
 const EditModal = () => {
 
-  const selEditModal = useSelector((state) => state.modal.isActive)
+  const addProductModal = useSelector((state) => state.modal.addProductModal)
   const dispatch = useDispatch()
 
   useEffect(() => {
     const htmlEl = document.querySelector('html')
 
-    if (selEditModal) htmlEl.style = "overflow:hidden"
+    if (addProductModal) htmlEl.style = "overflow:hidden"
     else htmlEl.style = 'overflow:auto'
 
-  }, [selEditModal])
+  }, [addProductModal])
 
   return (
     <>
-      <div className={selEditModal ? styles.overlay : ''}>
+      <div className={addProductModal ? styles.overlay : ''}>
 
-        <div className={selEditModal ? styles['show-editmodal'] : styles['editmodal-container']}>
+        <div className={addProductModal ? styles['show-editmodal'] : styles['editmodal-container']}>
           <div className={styles['editmodal-head']}>
-            <h3>Edit product</h3>
+            <h3>Add product</h3>
           </div>
           <div className={styles["editmodal-top"]}>
             <div className={styles['editmodal-left-contain']}>
               <div className={styles['editmodal-left-top']}>
-                <h3>Edit product</h3>
+                <h3>Add product</h3>
                 <span>Upload your product image</span>
                 <img src={productImg} alt='product' />
               </div>
               <div className={styles['editmodal-left-bot']}>
                 <span>
-                  Edit your Product description and necessary information
+                  Add your Product description and necessary information
                 </span>
               </div>
             </div>
@@ -86,7 +86,7 @@ const EditModal = () => {
           </div>
 
           <div className={styles['close-contain']}>
-            <button onClick={() => dispatch(closeModalEdit())} className={selEditModal ? styles['close-btn'] : styles['hide-close-btn']}>
+            <button onClick={() => dispatch(closeProductModal())} className={addProductModal ? styles['close-btn'] : styles['hide-close-btn']}>
               <img className={styles['close-btn-img']} src={closeBtn} alt="close-button" />
             </button>
           </div>

@@ -14,8 +14,8 @@ const Products = () => {
                 <ProductContainer>
                     <CategoryType />
                     <ProductItems />
-                    {/* <Modal /> */}
-                    {/* <EditModal /> */}
+                    <Modal />
+                    <EditModal />
                 </ProductContainer>
             </AdminLayout>
         </>

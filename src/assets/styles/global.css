@@ -7,4 +7,13 @@
 html,
 body {
     font-family: "Roboto", sans-serif;
+    overflow-x: hidden;
+}
+
+.custom-html {
+    overflow: hidden;
+}
+
+.custom-html-2 {
+    overflow: auto;
 }

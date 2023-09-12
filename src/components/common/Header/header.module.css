@@ -33,6 +33,20 @@
     font-weight: 700;
     line-height: 21px;
     letter-spacing: 0.25px;
+    transition: 0.5s all ease;
+}
+
+.add-product-btn:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.add-product-btn:active {
+    transform: scale(0.95);
+    opacity: 1;
+    font-size: 10px;font-weight: 500;
 }
 
 .header-right-second {
@@ -134,7 +148,7 @@
         padding: 0 16px 0 22px;
     }
 
-    .mob-navbar {
+    #mob-navbar {
         display: flex;
         align-items: center;
         margin-bottom: 8px;
@@ -144,16 +158,16 @@
         line-height: 21px;
         letter-spacing: 0.1px;
         padding-left: 18px;
-    }
-
-    .mob-navbar:active {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        width: 100%;
+        margin-bottom: 8px;
         height: 40px;
+        border-radius: 4px;
     }
 
-    .mob-navbar img {
+    .active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    #mob-navbar img {
         margin-right: 24px;
     }
 
