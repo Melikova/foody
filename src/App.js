@@ -6,13 +6,14 @@ import Dashboard from 'pages/Dashboard'
 import Category from 'pages/Category'
 import Orders from 'pages/Orders'
 import Offer from 'pages/Offer'
+import { Admin } from 'pages/Admin'
 
 
 const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Products />} />
+        <Route path='/' element={<Admin/>} />
         <Route path="/products" element={<Products />} />
         <Route path="/restaurants" element={<Restaurants />} />
         <Route path="/dashboard" element={<Dashboard />} />
