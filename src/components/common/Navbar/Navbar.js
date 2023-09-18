@@ -8,10 +8,12 @@ import category from 'assets/icons/navIcons/category.svg'
 import orders from 'assets/icons/navIcons/orders.svg';
 import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg'
+import { useTranslation } from 'react-i18next';
+
 
 const Navbar = () => {
 
-
+  const { t } = useTranslation()
 
   return (
     <>
@@ -23,51 +25,51 @@ const Navbar = () => {
           <ul>
 
             <li>
-              <NavLink to='/dashboard' id={styles['navbar']} className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/dashboard' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={dashboard} alt='dashboard' />
-                Dashboard
+                {t('Dashboard')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/products' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/products' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={products} alt='products' />
-                Products
+                {t('Products')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/restaurants' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/restaurants' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={restaurants} alt='restaurants' />
-                Restaurants
+                {t('Restaurants')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/category' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/category' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={category} alt='category' />
-                Category
+                {t('Category')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/orders' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/orders' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={orders} alt='orders' />
-                Orders
+                {t('Orders')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/offer' id={styles['navbar']}  className={({isActive}) => isActive ? styles['active'] : ''}>
+              <NavLink to='/offer' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={offer} alt='offer' />
-                Offer
+                {t('Offer')}
               </NavLink>
             </li>
 
             <li>
               <NavLink id={styles['navbar']} className={styles['navbar-last']}>
                 <img src={logout} alt='logout' />
-                Logout
+                {t('Logout')}
               </NavLink>
             </li>
 

@@ -46,7 +46,8 @@
 .add-product-btn:active {
     transform: scale(0.95);
     opacity: 1;
-    font-size: 10px;font-weight: 500;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .header-right-second {
@@ -58,6 +59,36 @@
     border: none;
     outline: none;
     cursor: pointer;
+    width: 41px;
+    transition: 0.4s all ease;
+}
+
+.language-btn:hover {
+    opacity: 0.8;
+    transform: scale(0.95);
+}
+
+.header-right-second {
+    position: relative;
+}
+
+.show-flag-area {
+    display: flex;
+    background: #27283C;
+    padding: 10px 10px;
+    box-shadow: 0px 3px 8px -2px rgba(0, 0, 0, 0.20);
+    left: -8px;
+    position: absolute;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.hidden-flag-area {
+    display: none;
+}
+
+.show-flag-area button {
+    margin-top: 12px;
 }
 
 .header-right-third {

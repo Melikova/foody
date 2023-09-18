@@ -5,6 +5,7 @@ import 'assets/styles/reset.css'
 import 'assets/styles/global.css'
 import { store } from 'redux/app/store'
 import { Provider } from 'react-redux'
+import 'i18n';
 import App from './App';
 
 
