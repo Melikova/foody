@@ -20,17 +20,16 @@ import mobFoodyLogo from 'assets/icons/mobFoodyLogo.svg';
 import leftArrow from 'assets/icons/leftArrow.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductModal } from 'redux/features/modalSlice';
-import { handleFlag } from 'redux/features/langSlice';
+import { handleActiveFlag, handleFlag } from 'redux/features/langSlice';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
 
   const dispatch = useDispatch();
   const navbar = useRef();
-  const [isActive, setActive] = useState(false);
 
   const selFlag = useSelector((state) => state.language.langParam);
-
+  const selActiveFlag = useSelector((state) => state.language.isActive)
 
   const openHamMenu = () => {
     navbar.current.style = 'left: 0'
@@ -40,15 +39,11 @@ const Header = () => {
     navbar.current.style = 'left: -500px'
   }
 
-  const handleLang = () => {
-    setActive(!isActive)
-  }
-
   useEffect(() => {
     const lang = localStorage.getItem("lang")
     dispatch(handleFlag(lang))
     i18n.changeLanguage(lang)
-  })
+  },[selFlag])
 
   const { t, i18n } = useTranslation()
 
@@ -81,21 +76,30 @@ const Header = () => {
 
             <div className={styles['header-right-second']}>
 
-              <button onClick={() => handleLang()} className={styles['language-btn']}>
+              <button onClick={() => dispatch(handleActiveFlag())} className={styles['language-btn']}>
                 <img src={selFlag === "tr" ? turkeyFlag : selFlag === "aze" ? azeFlag : selFlag === "uk" ? ukFlag : ukFlag} alt='uk-flag' />
               </button>
-              {isActive ? <div className={styles['show-flag-area']}>
+              {selActiveFlag ? <div className={styles['show-flag-area']}>
                 {
-                  selFlag === 'uk' ? '' : <button onClick={() => dispatch(handleFlag("uk"))} className={styles['language-btn']}>
+                  selFlag === 'uk' ? '' : <button onClick={() => {
+                    dispatch(handleFlag("uk"))
+                    dispatch(handleActiveFlag())
+                  }} className={styles['language-btn']}>
                     <img src={ukFlag} alt='uk-flag' />
                   </button>
                 }
 
-                {selFlag === 'aze' ? '' : <button onClick={() => dispatch(handleFlag("aze"))} className={styles['language-btn']}>
+                {selFlag === 'aze' ? '' : <button onClick={() => {
+                  dispatch(handleFlag("aze"))
+                  dispatch(handleActiveFlag())
+                }} className={styles['language-btn']}>
                   <img src={azeFlag} alt='aze-flag' />
                 </button>}
 
-                {selFlag === 'tr' ? '' : <button onClick={() => dispatch(handleFlag("tr"))} className={styles['language-btn']}>
+                {selFlag === 'tr' ? '' : <button onClick={() => {
+                  dispatch(handleFlag("tr"))
+                  dispatch(handleActiveFlag())
+                }} className={styles['language-btn']}>
                   <img src={turkeyFlag} alt='turkey-flag' />
                 </button>}
               </div> : ''

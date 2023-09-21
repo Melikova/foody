@@ -8,8 +8,9 @@ import { openModal, openModalEdit } from 'redux/features/modalSlice';
 import { motion } from "framer-motion";
 
 
-const ProductItem = () => {
-
+const ProductItem = ({ id, ...props }) => {
+    console.log(id);
+    console.log(props);
     const dispatch = useDispatch()
 
     const item = {
@@ -25,17 +26,17 @@ const ProductItem = () => {
         <>
             <motion.div
                 className={styles["product-bg"]}
-                variants={item} 
+                variants={item}
             >
                 <div className={styles['product-detail']}>
                     <div>
-                        <img src={pizzaImg} alt='pizza' />
+                        <img src={props?.img_url} alt='pizza' />
                     </div>
-                    <h3>Marqarita</h3>
+                    <h3>{props?.name}</h3>
                     <span>Papa John's</span>
                     <div className={styles['product-price']}>
                         <div>
-                            <span>$16</span>
+                            <span>${props?.price}</span>
                         </div>
                         <div className={styles['product-edit']}>
                             <button onClick={() => dispatch(openModalEdit())}>

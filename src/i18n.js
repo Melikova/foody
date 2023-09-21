@@ -9,9 +9,11 @@ const resources = {
             'Ürünler': 'Products',
             'Restoranlar': 'Restaurants',
             'Kategori': 'Category',
-            'Siparişler' :  'Orders',
-            'Teklif' : 'Offer',
-            'Çıkış Yap' : 'Logout',
+            'Siparişler': 'Orders',
+            'Teklif': 'Offer',
+            'Çıkış Yap': 'Logout',
+            'Kategori Çeşidi': 'Category Type',
+            'Restoranlar Ekle': 'ADD RESTAURANTS'
         }
     },
     tr: {
@@ -21,9 +23,11 @@ const resources = {
             'Products': 'Ürünler',
             'Restaurants': 'Restoranlar',
             'Category': 'Kategori',
-            'Orders' : 'Siparişler',
-            'Offer' : 'Teklif',
-            'Logout' : 'Çıkış Yap'
+            'Orders': 'Siparişler',
+            'Offer': 'Teklif',
+            'Logout': 'Çıkış Yap',
+            'Category Type': 'Kategori Çeşidi',
+            'ADD RESTAURANTS': 'Restoranlar Ekle'
         }
     },
     aze: {
@@ -35,7 +39,9 @@ const resources = {
             'Category': 'Kateqoriya',
             'Orders': 'Sifarişlər',
             'Offer': 'Təklif',
-            'Logout': 'Çıxış'
+            'Logout': 'Çıxış',
+            'Category Type': 'Kateqoriya',
+            'ADD RESTAURANTS': 'Restoran Əlavə Et'
         }
     }
 };

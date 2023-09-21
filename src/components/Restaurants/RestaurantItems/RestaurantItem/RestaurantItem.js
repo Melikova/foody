@@ -7,8 +7,9 @@ import { useDispatch } from 'react-redux'
 import { openDelModal, openResModalEdit } from 'redux/features/modalSlice';
 import { motion } from "framer-motion";
 
-const RestaurantItem = () => {
-
+const RestaurantItem = ({ id, ...restaurants }) => {
+  console.log(id, restaurants);
+  console.log(id);
   const dispatch = useDispatch()
 
   const item = {
@@ -22,15 +23,16 @@ const RestaurantItem = () => {
   return (
     <>
       <motion.div
+        key={id}
         variants={item}
         className='flex items-center justify-between bg-white w-60 max-md:w-64 h-20 mr-9 mb-9 pl-3 pr-1 pb-2.5 pt-2 rounded-md max-[420px]:mr-0'
         id={styles['restaurant-card']}
       >
         <div>
-          <img src={PapaJohns} alt="papa-johns" />
+          <img className='w-16' src={restaurants["img_url"]} alt="papa-johns" />
         </div>
         <div className={styles['restaurant-detail']}>
-          <h3>Papa John's</h3>
+          <h3>{restaurants.name}</h3>
           <span>Pizza</span>
         </div>
         <div className='flex flex-col'>
