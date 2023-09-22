@@ -3,6 +3,10 @@ import { Listbox, Transition } from '@headlessui/react'
 import downArrow from 'assets/icons/downArrow.svg'
 import styles from 'components/common/SelectBox/selectbox.module.css'
 import { useTranslation } from 'react-i18next'
+import { useProductsCategory } from 'hooks/useProductsData'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { handleProductCategoryID } from 'redux/features/productsSlice'
 
 const people = [
     {
@@ -41,78 +45,89 @@ function classNames(...classes) {
 }
 
 export default function Example() {
+
+    const { data } = useProductsCategory()
+
+    const navigate = useNavigate()
+    const dipatch = useDispatch()
+
     const [selected, setSelected] = useState(people[0])
 
     const { t } = useTranslation()
 
+    const handleProductsCategory = (category, categoryID) => {
+        dipatch(handleProductCategoryID(categoryID))
+        navigate(`/products/${category}`)
+    }
 
     return (
 
         <>
-          <Listbox value={selected} onChange={setSelected}>
-            {({ open }) => (
-                <>
-                    <div className="relative">
-                        <Listbox.Button className={styles['category-btn']}>
-                            <span className="flex justify-between items-center">
-                                <span className="block truncate">{selected.name === 'Category Type' ? t('Category Type') : selected.name}</span>
-                                <span>
-                                    <img src={downArrow} alt='downArrow' />
+            <Listbox value={selected} onChange={setSelected}>
+                {({ open }) => (
+                    <>
+                        <div className="relative">
+                            <Listbox.Button className={styles['category-btn']}>
+                                <span className="flex justify-between items-center">
+                                    <span className="block truncate">{selected.name === 'Category Type' ? t('Category Type') : selected.name}</span>
+                                    <span>
+                                        <img src={downArrow} alt='downArrow' />
+                                    </span>
                                 </span>
-                            </span>
-                            <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                            </span>
-                        </Listbox.Button>
-                        <Transition
-                            show={open}
-                            as={Fragment}
-                            leave="transition ease-in duration-100"
-                            leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
-                            <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id={styles['listbox-option']}>
-                                {people.map((person) => (
-                                    <Listbox.Option
-                                        key={person.id}
-                                        className={({ active }) =>
-                                            classNames(
-                                                active ? 'bg-pink text-white' : 'text-gray-900',
-                                                'relative cursor-default select-none py-2 pl-3 pr-9'
-                                            )
-                                        }
-                                        value={person}
-                                    >
-                                        {({ selected, active }) => (
-                                            <>
-                                                <div className="flex items-center">
-                                                    <span
-                                                        className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
-                                                    >
-                                                        {person.name}
-                                                    </span>
-                                                </div>
+                                <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                                </span>
+                            </Listbox.Button>
+                            <Transition
+                                show={open}
+                                as={Fragment}
+                                leave="transition ease-in duration-100"
+                                leaveFrom="opacity-100"
+                                leaveTo="opacity-0"
+                            >
+                                <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id={styles['listbox-option']}>
+                                    {data?.data.result.data.map((name) => (
+                                        <Listbox.Option
+                                            key={name.id}
+                                            className={({ active }) =>
+                                                classNames(
+                                                    active ? 'bg-pink text-white' : 'text-gray-900',
+                                                    'relative cursor-default select-none py-2 pl-3 pr-9'
+                                                )
+                                            }
+                                            value={name}
+                                        >
+                                            {({ selected, active }) => (
+                                                <>
+                                                    <div className="flex items-center">
+                                                        <span
+                                                            className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
+                                                            onClick={() => handleProductsCategory(name?.slug, name?.id)}
+                                                        >
+                                                            {t(name?.name)}
+                                                        </span>
+                                                    </div>
 
-                                                {selected ? (
-                                                    <span
-                                                        className={classNames(
-                                                            active ? 'text-white' : 'text-indigo-600',
-                                                            'absolute inset-y-0 right-0 flex items-center pr-4'
-                                                        )}
-                                                    >
-                                                        {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
-                                                    </span>
-                                                ) : null}
-                                            </>
-                                        )}
-                                    </Listbox.Option>
-                                ))}
-                            </Listbox.Options>
-                        </Transition>
-                    </div>
-                </>
-            )}
-        </Listbox>
+                                                    {selected ? (
+                                                        <span
+                                                            className={classNames(
+                                                                active ? 'text-white' : 'text-indigo-600',
+                                                                'absolute inset-y-0 right-0 flex items-center pr-4'
+                                                            )}
+                                                        >
+                                                            {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
+                                                        </span>
+                                                    ) : null}
+                                                </>
+                                            )}
+                                        </Listbox.Option>
+                                    ))}
+                                </Listbox.Options>
+                            </Transition>
+                        </div>
+                    </>
+                )}
+            </Listbox>
         </>
-      
+
     )
 }

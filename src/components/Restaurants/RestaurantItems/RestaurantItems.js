@@ -3,8 +3,11 @@ import RestaurantItemsContainer from 'components/Restaurants/RestaurantItemsCont
 import RestaurantItem from 'components/Restaurants/RestaurantItems/RestaurantItem/RestaurantItem'
 import useRestaurantsData from 'hooks/useRestaurantsData'
 import { ClipLoader } from 'react-spinners'
+import { useSelector } from 'react-redux'
 
 const RestaurantItems = () => {
+
+  const selRestaurants = useSelector((state) => state.restaurants.restaurantsData)
 
   const onSuccess = (data) => {
     console.log("Məhsullar uğurla yüklənildi!", data);
@@ -15,7 +18,6 @@ const RestaurantItems = () => {
   }
 
   const { isLoading, data, isError, error } = useRestaurantsData(onSuccess, onError)
-  console.log(data);
   const override = {
     display: "block",
     margin: "0 auto",
@@ -31,6 +33,12 @@ const RestaurantItems = () => {
     />
   }
 
+  const getRestaurantsOnPageLoad = () => {
+    return selRestaurants?.result.data.map((restaurant) => (
+      <RestaurantItem key={restaurant.id} {...restaurant} />
+    ))
+  }
+
   const getRestaurants = () => {
     return data?.data.result.data.map((restaurant) => (
       <RestaurantItem key={restaurant.id} {...restaurant} />
@@ -42,7 +50,7 @@ const RestaurantItems = () => {
       <RestaurantItemsContainer>
 
         {
-          getRestaurants()
+          selRestaurants ? getRestaurantsOnPageLoad() : getRestaurants()
         }
 
       </RestaurantItemsContainer>

@@ -6,8 +6,10 @@ import Modal from 'components/common/Modal/Modal'
 import EditModal from 'components/common/EditModal/EditModal'
 import AdminLayout from 'layouts/AdminLayout'
 
-
 const Products = () => {
+
+        
+    
     return (
         <>
             <AdminLayout>

@@ -10,17 +10,15 @@ import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg'
 import { useTranslation } from 'react-i18next';
 import useRestaurantsData from 'hooks/useRestaurantsData';
-import handleProducts from 'redux/features/productsSlice'
 import { useProductsData } from 'hooks/useProductsData';
 import { useDispatch } from 'react-redux';
-
-
+import { getProductsData } from 'redux/features/productsSlice';
+import { getRestaurantsData } from 'redux/features/restaurantsSlice';
 
 const Navbar = () => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { data } = useProductsData()
 
   return (
     <>
@@ -39,14 +37,14 @@ const Navbar = () => {
             </li>
 
             <li>
-              <NavLink to='/products' id={styles['navbar']} onClick={() => dispatch(handleProducts(data))} className={({ isActive }) => isActive ? styles['active'] : ''}>
+              <NavLink to='/products' id={styles['navbar']} onClick={() => dispatch(getProductsData())} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={products} alt='products' />
                 {t('Products')}
               </NavLink>
             </li>
 
             <li>
-              <NavLink to='/restaurants' id={styles['navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
+              <NavLink to='/restaurants' id={styles['navbar']} onClick={() => dispatch(getRestaurantsData())} className={({ isActive }) => isActive ? styles['active'] : ''}>
                 <img src={restaurants} alt='restaurants' />
                 {t('Restaurants')}
               </NavLink>

@@ -1,17 +1,19 @@
 import React from 'react'
 import ProductItem from 'components/Products/ProductItems/ProductItem/ProductItem'
 import ProductItemsContainer from 'components/common/Container/ProductItemsContainer'
-import { useProductsData } from 'hooks/useProductsData'
+import { useProductsCategory, useProductsData, useProductsFilteredData } from 'hooks/useProductsData'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from 'react-redux';
-
+import { useActionData, useParams } from 'react-router-dom';
 
 const ProductItems = () => {
 
-    const selProducts = useSelector((state) => state.products.productsData )
+    const selProducts = useSelector((state) => state.products.productsData)
+    const selFilteredProducts = useSelector((state) => state.products.productCategoryID)
 
     const onSuccess = (data) => {
         console.log("Məhsullar uğurla yüklənildi!", data);
+        console.log(data);
     }
 
     const onError = (error) => {
@@ -35,19 +37,34 @@ const ProductItems = () => {
         />
     }
 
-    const getProducts = () => {
-        return selProducts?.data.result.data.map((product) => (
+    const getProductsOnPageLoad = () => {
+        return selProducts?.result.data.map((product) => (
             <ProductItem key={product.id} {...product} />
         ))
     }
 
+    const getProducts = () => {
+        return data?.data.result.data.map((product) => (
+            <ProductItem key={product.id} {...product} />
+        ))
+    }
 
+    const getFilteredProducts = () => {
+        console.log(selFilteredProducts);
+        const filteredProducts = data?.data.result.data.filter((product) => (
+            product['rest_id'] !== selFilteredProducts
+        ))
+        console.log(filteredProducts);
+        return filteredProducts.map((product) => (
+            <ProductItem key={product.id} {...product} />
+        ))
+    }
 
     return (
         <>
             <ProductItemsContainer>
                 {
-                    getProducts()
+                    selFilteredProducts || (selProducts && selFilteredProducts) ? getFilteredProducts() : selProducts ? getProductsOnPageLoad() : getProducts()
                 }
             </ProductItemsContainer>
         </>
