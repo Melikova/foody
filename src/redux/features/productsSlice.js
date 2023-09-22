@@ -19,8 +19,7 @@ export const getProductsData = createAsyncThunk('products/getProductsData', asyn
 export const productsSlice = createSlice({
     name: 'products',
     initialState,
-    reducers:
-    {
+    reducers: {
         handleProductCategoryID: (state, action) => {
             state.productCategoryID = action.payload
         }

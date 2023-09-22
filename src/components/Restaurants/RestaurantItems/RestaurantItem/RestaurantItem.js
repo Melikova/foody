@@ -30,7 +30,7 @@ const RestaurantItem = ({ id, ...restaurants }) => {
           <img className='w-16' src={restaurants.name === 'KFC' ? KFClogo : restaurants["img_url"]} alt="papa-johns" />
         </div>
         <div className={styles['restaurant-detail']}>
-          <h3>{restaurants.name}</h3>
+          <h3>{(restaurants.name).length > 9 ? (restaurants.name).slice(0,9) + "..." : restaurants.name}</h3>
           <span>{(restaurants?.cuisine)?.length > 16 ? (restaurants?.cuisine).slice(0, 16) + "..." : restaurants?.cuisine}</span>
         </div>
         <div className='flex flex-col'>

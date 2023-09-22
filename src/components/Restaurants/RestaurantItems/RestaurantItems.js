@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 const RestaurantItems = () => {
 
   const selRestaurants = useSelector((state) => state.restaurants.restaurantsData)
+  const selFilteredRestaurants = useSelector((state) => state.restaurants.restaurantCategoryID)
 
   const onSuccess = (data) => {
     console.log("Məhsullar uğurla yüklənildi!", data);
@@ -18,6 +19,7 @@ const RestaurantItems = () => {
   }
 
   const { isLoading, data, isError, error } = useRestaurantsData(onSuccess, onError)
+  
   const override = {
     display: "block",
     margin: "0 auto",
@@ -45,12 +47,22 @@ const RestaurantItems = () => {
     ))
   }
 
+  const getFilteredRestaurants = () => {
+    const filteredRestaurants = data?.data.result.data.filter((restaurant) => (
+      restaurant['category_id'] !== selFilteredRestaurants
+    ))
+    console.log(filteredRestaurants);
+    return filteredRestaurants.map((restaurant) => (
+      <RestaurantItem key={restaurant.id} {...restaurant} />
+    ))
+  }
+
   return (
     <>
       <RestaurantItemsContainer>
 
         {
-          selRestaurants ? getRestaurantsOnPageLoad() : getRestaurants()
+          selFilteredRestaurants || (selRestaurants && selFilteredRestaurants) ? getFilteredRestaurants() : selRestaurants ? getRestaurantsOnPageLoad() : getRestaurants()
         }
 
       </RestaurantItemsContainer>

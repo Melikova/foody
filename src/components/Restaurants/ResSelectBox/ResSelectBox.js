@@ -3,6 +3,10 @@ import { Listbox, Transition } from '@headlessui/react'
 import downArrow from 'assets/icons/downArrow.svg'
 import styles from 'components/Restaurants/ResSelectBox/resselectbox.module.css'
 import { useTranslation } from 'react-i18next'
+import { useProductsCategory } from 'hooks/useProductsData'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { handleRestaurantsCategories } from 'redux/features/restaurantsSlice'
 
 const people = [
     {
@@ -41,9 +45,20 @@ function classNames(...classes) {
 }
 
 export default function Example() {
-    const [selected, setSelected] = useState(people[0])
 
-    const {t} = useTranslation()
+    const { data } = useProductsCategory()
+
+    const [selected, setSelected] = useState(people[0])
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+
+    const { t } = useTranslation()
+
+    const handleRestaurantsCategory = (category, categoryID) => {
+        dispatch(handleRestaurantsCategories(categoryID))
+        navigate(`/restaurants/${category}`)
+    }
 
     return (
 
@@ -70,24 +85,24 @@ export default function Example() {
                                 leaveTo="opacity-0"
                             >
                                 <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id={styles['listbox-option']}>
-                                    {people.map((person) => (
+                                    {data?.data.result.data.map((restaurant) => (
                                         <Listbox.Option
-                                            key={person.id}
+                                            key={restaurant.id}
                                             className={({ active }) =>
                                                 classNames(
                                                     active ? 'bg-pink text-white' : 'text-gray-900',
                                                     'relative cursor-default select-none py-2 pl-3 pr-9'
                                                 )
                                             }
-                                            value={person}
+                                            value={restaurant}
                                         >
                                             {({ selected, active }) => (
                                                 <>
-                                                    <div className="flex items-center">
+                                                    <div className="flex items-center" onClick={() => handleRestaurantsCategory(restaurant?.slug, restaurant?.id)}>
                                                         <span
                                                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
                                                         >
-                                                            {person.name}
+                                                            {restaurant.name}
                                                         </span>
                                                     </div>
 

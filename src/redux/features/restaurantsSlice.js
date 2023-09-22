@@ -4,6 +4,7 @@ import axios from 'axios'
 
 const initialState = {
     restaurantsData: null,
+    restaurantCategoryID: ''
 }
 
 export const getRestaurantsData = createAsyncThunk('restaurants/getRestaurantsData', async () => {
@@ -16,11 +17,18 @@ export const getRestaurantsData = createAsyncThunk('restaurants/getRestaurantsDa
 export const restaurantSlice = createSlice({
     name: 'restaurants',
     initialState,
+    reducers: {
+        handleRestaurantsCategories: (state, action) => {
+            state.restaurantCategoryID = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getRestaurantsData.fulfilled, (state, action) => {
             state.restaurantsData = action.payload
         })
     }
 })
+
+export const { handleRestaurantsCategories } = restaurantSlice.actions
 
 export default restaurantSlice.reducer

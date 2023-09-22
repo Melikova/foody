@@ -9,8 +9,6 @@ import orders from 'assets/icons/navIcons/orders.svg';
 import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg'
 import { useTranslation } from 'react-i18next';
-import useRestaurantsData from 'hooks/useRestaurantsData';
-import { useProductsData } from 'hooks/useProductsData';
 import { useDispatch } from 'react-redux';
 import { getProductsData } from 'redux/features/productsSlice';
 import { getRestaurantsData } from 'redux/features/restaurantsSlice';
