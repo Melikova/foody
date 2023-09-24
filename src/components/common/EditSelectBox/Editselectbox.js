@@ -53,9 +53,9 @@ export default function Example() {
                         <Listbox.Button className={styles['category-btn']} style={{"width" : "100%"}}>
                             <span className="flex justify-between items-center">
                                 <span className="block truncate">{selected.name}</span>
-                                <button>
+                                <span>
                                     <img src={downArrow} alt='downArrow' />
-                                </button>
+                                </span>
                             </span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                             </span>

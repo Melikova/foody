@@ -2,11 +2,12 @@ import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import downArrow from 'assets/icons/downArrow.svg'
 import styles from 'components/common/SelectBox/selectbox.module.css'
+import { useTranslation } from 'react-i18next'
 
 const people = [
     {
         id: 1,
-        name: 'Category Type',
+        name: 'Category Type'
     },
     {
         id: 2,
@@ -42,6 +43,9 @@ function classNames(...classes) {
 export default function Example() {
     const [selected, setSelected] = useState(people[0])
 
+    const { t } = useTranslation()
+
+
     return (
 
         <>
@@ -51,10 +55,10 @@ export default function Example() {
                     <div className="relative">
                         <Listbox.Button className={styles['category-btn']}>
                             <span className="flex justify-between items-center">
-                                <span className="block truncate">{selected.name}</span>
-                                <button>
+                                <span className="block truncate">{selected.name === 'Category Type' ? t('Category Type') : selected.name}</span>
+                                <span>
                                     <img src={downArrow} alt='downArrow' />
-                                </button>
+                                </span>
                             </span>
                             <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                             </span>
