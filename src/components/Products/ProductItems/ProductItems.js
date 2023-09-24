@@ -50,11 +50,9 @@ const ProductItems = () => {
     }
 
     const getFilteredProducts = () => {
-        console.log(selFilteredProducts);
         const filteredProducts = data?.data.result.data.filter((product) => (
             product['rest_id'] !== selFilteredProducts
         ))
-        console.log(filteredProducts);
         return filteredProducts.map((product) => (
             <ProductItem key={product.id} {...product} />
         ))

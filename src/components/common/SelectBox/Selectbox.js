@@ -13,31 +13,6 @@ const people = [
         id: 1,
         name: 'Category Type'
     },
-    {
-        id: 2,
-        name: 'Hamburger',
-    },
-    {
-        id: 3,
-        name: 'Dönər',
-    },
-    {
-        id: 4,
-        name: 'Salat',
-    },
-    {
-        id: 5,
-        name: 'Kabab',
-    },
-    {
-        id: 6,
-        name: 'İçki',
-    },
-    {
-        id: 7,
-        name: 'Şirniyyat',
-    },
-
 ]
 
 function classNames(...classes) {
@@ -46,17 +21,21 @@ function classNames(...classes) {
 
 export default function Example() {
 
-    const { data } = useProductsCategory()
+    const onSuccess = (data) => {
+        console.log(data);
+    }
+
+    const { data } = useProductsCategory(onSuccess)
 
     const navigate = useNavigate()
-    const dipatch = useDispatch()
+    const dispatch = useDispatch()
 
     const [selected, setSelected] = useState(people[0])
 
     const { t } = useTranslation()
 
     const handleProductsCategory = (category, categoryID) => {
-        dipatch(handleProductCategoryID(categoryID))
+        dispatch(handleProductCategoryID(categoryID))
         navigate(`/products/${category}`)
     }
 
@@ -98,10 +77,9 @@ export default function Example() {
                                         >
                                             {({ selected, active }) => (
                                                 <>
-                                                    <div className="flex items-center">
+                                                    <div className="flex items-center cursor-pointer" onClick={() => handleProductsCategory(name?.slug, name?.id)}>
                                                         <span
                                                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
-                                                            onClick={() => handleProductsCategory(name?.slug, name?.id)}
                                                         >
                                                             {t(name?.name)}
                                                         </span>
@@ -114,7 +92,6 @@ export default function Example() {
                                                                 'absolute inset-y-0 right-0 flex items-center pr-4'
                                                             )}
                                                         >
-                                                            {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                                                         </span>
                                                     ) : null}
                                                 </>
