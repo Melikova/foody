@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from 'components/Products/ProductItems/ProductItem/productitem.module.css'
-import pizzaImg from 'assets/images/foodImages/pizza.svg';
+import noFood from 'assets/images/foodImages/no-food.png'
 import editImg from 'assets/icons/edit.svg';
 import trashImg from 'assets/icons/trash.svg';
 import { useDispatch } from 'react-redux'
@@ -9,8 +9,6 @@ import { motion } from "framer-motion";
 
 
 const ProductItem = ({ id, ...props }) => {
-    console.log(id);
-    console.log(props);
     const dispatch = useDispatch()
 
     const item = {
@@ -25,14 +23,15 @@ const ProductItem = ({ id, ...props }) => {
     return (
         <>
             <motion.div
+                key={id}
                 className={styles["product-bg"]}
                 variants={item}
             >
                 <div className={styles['product-detail']}>
                     <div>
-                        <img src={props?.img_url} alt='pizza' />
+                        <img className={styles['food-img']} src={props?.img_url === "string" || (props?.img_url).slice(0, 38) === 'https://firebasestorage.googleapis.com' ? noFood : props.img_url} alt='pizza' />
                     </div>
-                    <h3>{props?.name}</h3>
+                    <h3>{(props?.name).length > 16 ? (props?.name).slice(0, 16) + "..." : props?.name === "string" ? "Food Not Upload Yet" : props.name}</h3>
                     <span>Papa John's</span>
                     <div className={styles['product-price']}>
                         <div>

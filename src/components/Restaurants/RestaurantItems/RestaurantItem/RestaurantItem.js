@@ -1,17 +1,15 @@
 import React from 'react'
 import styles from 'components/Restaurants/RestaurantItems/RestaurantItem/restaurantitem.module.css'
-import PapaJohns from 'assets/images/foodImages/PapaJohnsImg.svg'
 import editImg from 'assets/icons/edit.svg';
 import trashImg from 'assets/icons/trash.svg';
+import KFClogo from 'assets/icons/KFClogo.png';
 import { useDispatch } from 'react-redux'
 import { openDelModal, openResModalEdit } from 'redux/features/modalSlice';
 import { motion } from "framer-motion";
 
 const RestaurantItem = ({ id, ...restaurants }) => {
-  console.log(id, restaurants);
-  console.log(id);
   const dispatch = useDispatch()
-
+  console.log(restaurants);
   const item = {
     hidden: { y: 20, opacity: 0 },
     visible: {
@@ -29,11 +27,11 @@ const RestaurantItem = ({ id, ...restaurants }) => {
         id={styles['restaurant-card']}
       >
         <div>
-          <img className='w-16' src={restaurants["img_url"]} alt="papa-johns" />
+          <img className='w-16' src={restaurants.name === 'KFC' ? KFClogo : restaurants["img_url"]} alt="papa-johns" />
         </div>
         <div className={styles['restaurant-detail']}>
           <h3>{restaurants.name}</h3>
-          <span>Pizza</span>
+          <span>{(restaurants?.cuisine)?.length > 16 ? (restaurants?.cuisine).slice(0, 16) + "..." : restaurants?.cuisine}</span>
         </div>
         <div className='flex flex-col'>
           <button onClick={() => dispatch(openDelModal())} className='mb-4'>
