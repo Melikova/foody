@@ -50,6 +50,7 @@ const EditModal = () => {
                 <button>
                   <img src={uploadImg} alt="upload" />
                   upload
+                <input type='file' accept='image/*' hidden/>
                 </button>
               </div>
               <div className={styles['editmodal-right-bot']}>

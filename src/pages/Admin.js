@@ -1,4 +1,4 @@
-import React, { useRef,useState } from 'react';
+import React, { useRef} from 'react';
 import loginImg from '../assets/images/loginImg.svg'
 import { useNavigate } from 'react-router-dom';
 import signIn from 'server/firebase';
@@ -36,6 +36,7 @@ export const Admin = () => {
         <div className='flex flex-col-reverse sm:flex-row'>
           <div className='sm:bg-loginBgc flex flex-col'>
             <h1 className="sm:mt-58px mt-18px mb-23px font-montserrat text-center text-24 sm:text-35 text-gray1 font-weight700 sm:ml-40px sm:mr-48px sm:mb-40px">Welcome Admin</h1>
+            <input type='file' accept='image/*'/>
             <input ref={mailRef} type='email' placeholder='E-mail' className='sm:pl-40 pl-19 inline mx-auto h-resinput w-207 text-14 sm:text-18 items-center text-gray1 font-weight400 sm:rounded-4 sm:ml-47px sm:mr-58px sm:w-318 bg-inputBg sm:h-input mb-13px sm:mb-26px'/>
             <input ref={passwordRef} type='password' placeholder='Password' className='sm:pl-40 pl-19 inline mx-auto h-resinput w-207 text-14 sm:text-18 items-center text-gray1 font-weight400 sm:rounded-4 sm:ml-47px sm:mr-58px sm:w-318 bg-inputBg sm:h-input mb-23px sm:mb-26px'/>
             <button type="button" onClick={signInBtn} className=' text-white rounded-5 sm:rounded-4 sm:mb-58px sm:ml-47px sm:mr-58px font-medium text-14 sm:text-25 hover:bg-pink00 bg-loginBtn py-6 sm:py-10'>Sign in</button>

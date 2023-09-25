@@ -67,7 +67,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <NavLink id={styles['navbar']} className={styles['navbar-last']}>
+              <NavLink to='./admin' id={styles['navbar']} className={styles['navbar-last']}>
                 <img src={logout} alt='logout' />
                 {t('Logout')}
               </NavLink>
