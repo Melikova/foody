@@ -51,7 +51,6 @@ const RestaurantItems = () => {
     const filteredRestaurants = data?.data.result.data.filter((restaurant) => (
       restaurant['category_id'] !== selFilteredRestaurants
     ))
-    console.log(filteredRestaurants);
     return filteredRestaurants.map((restaurant) => (
       <RestaurantItem key={restaurant.id} {...restaurant} />
     ))

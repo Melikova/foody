@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Navigate, NavLink, useNavigate } from 'react-router-dom'
 import styles from 'components/common/Navbar/navbar.module.css'
 import dashboard from 'assets/icons/navIcons/dashIcon.svg';
 import products from 'assets/icons/navIcons/storeIcon.svg';
@@ -12,11 +12,22 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { getProductsData } from 'redux/features/productsSlice';
 import { getRestaurantsData } from 'redux/features/restaurantsSlice';
+import { useAuth } from 'hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Navbar = () => {
 
   const { t } = useTranslation()
   const dispatch = useDispatch()
+  const auth = useAuth();
+
+  const handleLogout = () => {
+    auth.logout()
+    toast.success("Admin Paneldən Uğurla Çıxış Edildi!")
+    setTimeout(() => {
+      window.location.href = '/login'
+    }, 5000);
+  };
 
   return (
     <>
@@ -70,7 +81,7 @@ const Navbar = () => {
             </li>
 
             <li>
-              <NavLink id={styles['navbar']} className={styles['navbar-last']}>
+              <NavLink id={styles['navbar']} onClick={handleLogout} className={styles['navbar-last']}>
                 <img src={logout} alt='logout' />
                 {t('Logout')}
               </NavLink>

@@ -5,7 +5,9 @@ import { Hand } from 'heroicons-react'
 
 const initialState = {
     productsData: null,
-    productCategoryID: ''
+    productCategoryID: '',
+    editProduct: null,
+    editProductID: ''
 }
 
 export const getProductsData = createAsyncThunk('products/getProductsData', async () => {
@@ -22,6 +24,12 @@ export const productsSlice = createSlice({
     reducers: {
         handleProductCategoryID: (state, action) => {
             state.productCategoryID = action.payload
+        },
+        handleEditProduct: (state, action) => {
+            state.editProduct = action.payload
+        },
+        handleEditProductID: (state, action) => {
+            state.editProductID = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -31,6 +39,6 @@ export const productsSlice = createSlice({
     }
 })
 
-export const { handleProductCategoryID } = productsSlice.actions
+export const { handleProductCategoryID, handleEditProduct, handleEditProductID } = productsSlice.actions
 
 export default productsSlice.reducer

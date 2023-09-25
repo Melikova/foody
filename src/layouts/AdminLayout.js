@@ -4,6 +4,7 @@ import Navbar from 'components/common/Navbar/Navbar'
 import Container from 'components/common/Container/Container'
 import AddProductModal from 'components/common/AddProductModal/AddProductModal';
 import styles from 'layouts/adminlayout.module.css'
+import { ToastContainer } from 'react-toastify';
 
 const AdminLayout = ({ children }) => {
 
@@ -15,6 +16,7 @@ const AdminLayout = ({ children }) => {
                     <Navbar />
                     <AddProductModal />
                     {children}
+                    <ToastContainer />
                 </Container>
             </div>
         </>

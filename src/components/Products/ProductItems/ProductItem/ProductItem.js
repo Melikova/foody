@@ -6,6 +6,7 @@ import trashImg from 'assets/icons/trash.svg';
 import { useDispatch } from 'react-redux'
 import { openModal, openModalEdit } from 'redux/features/modalSlice';
 import { motion } from "framer-motion";
+import { handleEditProduct, handleEditProductID } from 'redux/features/productsSlice';
 
 
 const ProductItem = ({ id, ...props }) => {
@@ -19,6 +20,12 @@ const ProductItem = ({ id, ...props }) => {
         }
     };
 
+    const handleEdit = () => {
+        dispatch(openModalEdit())
+        console.log(id);
+        dispatch(handleEditProductID(id))
+        dispatch(handleEditProduct(props))
+    }
 
     return (
         <>
@@ -38,7 +45,7 @@ const ProductItem = ({ id, ...props }) => {
                             <span>${props?.price}</span>
                         </div>
                         <div className={styles['product-edit']}>
-                            <button onClick={() => dispatch(openModalEdit())}>
+                            <button onClick={() => handleEdit()}>
                                 <img src={editImg} alt='edit' />
                             </button>
                             <button onClick={() => dispatch(openModal())}>

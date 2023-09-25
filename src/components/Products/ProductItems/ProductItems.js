@@ -1,10 +1,9 @@
 import React from 'react'
 import ProductItem from 'components/Products/ProductItems/ProductItem/ProductItem'
 import ProductItemsContainer from 'components/common/Container/ProductItemsContainer'
-import { useProductsCategory, useProductsData, useProductsFilteredData } from 'hooks/useProductsData'
+import { useProductsData } from 'hooks/useProductsData'
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from 'react-redux';
-import { useActionData, useParams } from 'react-router-dom';
 
 const ProductItems = () => {
 
