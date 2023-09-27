@@ -9,6 +9,13 @@
     display: flex;
     justify-content: center;
     padding: 15px 0 12px 0;
+    transition: 0.6s all ease;
+    cursor: pointer;
+}
+
+.product-bg:hover {
+    opacity: 0.9 !important;
+    transform: scale(1.05) !important;
 }
 
 .product-detail h3 {
@@ -38,4 +45,10 @@
 
 .product-edit :last-child {
     margin-left: 6px;
+}
+
+.food-img {
+    width: 160.328px;
+    height: 158px;
+    object-fit: contain;
 }

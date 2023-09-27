@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styles from 'components/common/Header/header.module.css'
+import ukFlag from 'assets/icons/countryFlags/uk.svg';
+import azeFlag from 'assets/icons/countryFlags/azeFlag.png';
+import turkeyFlag from 'assets/icons/countryFlags/turkeyFlag.png';
 import logo from 'assets/icons/logo.svg'
 import plusBtn from "assets/icons/plusBtn.svg"
 import mobPlusBtn from 'assets/icons/mobPlusBtn.svg'
-import ukFlag from 'assets/icons/countryFlags/uk.svg'
 import admin from 'assets/icons/admin.svg'
 import hamburger from 'assets/icons/hamburger.svg'
 import dashboard from 'assets/icons/navIcons/dashIcon.svg';
@@ -16,13 +18,20 @@ import offer from 'assets/icons/navIcons/offer.svg';
 import logout from 'assets/icons/navIcons/logout.svg';
 import mobFoodyLogo from 'assets/icons/mobFoodyLogo.svg';
 import leftArrow from 'assets/icons/leftArrow.svg';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { addProductModal } from 'redux/features/modalSlice';
+import { handleActiveFlag, handleFlag } from 'redux/features/langSlice';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
 
+  const dispatch = useDispatch();
   const navbar = useRef();
 
-  const handleHamMenu = () => {
+  const selFlag = useSelector((state) => state.language.langParam);
+  const selActiveFlag = useSelector((state) => state.language.isActive)
+
+  const openHamMenu = () => {
     navbar.current.style = 'left: 0'
   }
 
@@ -30,15 +39,21 @@ const Header = () => {
     navbar.current.style = 'left: -500px'
   }
 
+  useEffect(() => {
+    const lang = localStorage.getItem("lang")
+    dispatch(handleFlag(lang))
+    i18n.changeLanguage(lang)
+  },[selFlag])
+
+  const { t, i18n } = useTranslation()
 
   return (
+
     <>
       <header>
-
         <div className={styles['header-bg']}>
-
           <div className={styles['header-left']}>
-            <button onClick={() => handleHamMenu()} className={styles['ham-menu']}>
+            <button onClick={() => openHamMenu()} className={styles['ham-menu']}>
               <img src={hamburger} alt="hamburger-menu" />
             </button>
             <Link>
@@ -49,20 +64,48 @@ const Header = () => {
           <div className={styles['header-right-container']}>
 
             <div className={styles['header-right-first']}>
-              <button className={styles['add-product-btn']}>
+              <button onClick={() => dispatch(addProductModal())} className={styles['add-product-btn']}>
                 <img src={plusBtn} alt='plus-button' />
-                ADD PRODUCT
+                {t('Add Product')}
               </button>
+
               <button className={styles['add-product-mob-btn']}>
                 <img src={mobPlusBtn} alt='mobile-plus-button' />
               </button>
             </div>
 
-            {/* <div className={styles['header-right-second']}>
-              <button className={styles['language-btn']}>
-                <img src={ukFlag} alt='uk-flag' />
+            <div className={styles['header-right-second']}>
+
+              <button onClick={() => dispatch(handleActiveFlag())} className={styles['language-btn']}>
+                <img src={selFlag === "tr" ? turkeyFlag : selFlag === "aze" ? azeFlag : selFlag === "uk" ? ukFlag : ukFlag} alt='uk-flag' />
               </button>
-            </div> */}
+              {selActiveFlag ? <div className={styles['show-flag-area']}>
+                {
+                  selFlag === 'uk' ? '' : <button onClick={() => {
+                    dispatch(handleFlag("uk"))
+                    dispatch(handleActiveFlag())
+                  }} className={styles['language-btn']}>
+                    <img src={ukFlag} alt='uk-flag' />
+                  </button>
+                }
+
+                {selFlag === 'aze' ? '' : <button onClick={() => {
+                  dispatch(handleFlag("aze"))
+                  dispatch(handleActiveFlag())
+                }} className={styles['language-btn']}>
+                  <img src={azeFlag} alt='aze-flag' />
+                </button>}
+
+                {selFlag === 'tr' ? '' : <button onClick={() => {
+                  dispatch(handleFlag("tr"))
+                  dispatch(handleActiveFlag())
+                }} className={styles['language-btn']}>
+                  <img src={turkeyFlag} alt='turkey-flag' />
+                </button>}
+              </div> : ''
+              }
+
+            </div>
 
             <div className={styles['header-right-third']}>
               <img src={admin} alt='userimage' />
@@ -84,51 +127,50 @@ const Header = () => {
 
           <nav>
             <ul className={styles['mob-navbar-contain']}>
-
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/dashboard' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={dashboard} alt='dashboard' />
                   Dashboard
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/products' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={products} alt='products' />
                   Products
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/restaurants' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={restaurants} alt='restaurants' />
                   Restaurants
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/category' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={category} alt='category' />
                   Category
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/orders' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={orders} alt='orders' />
                   Orders
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={styles['mob-navbar']}>
+                <NavLink to='/offer' id={styles['mob-navbar']} className={({ isActive }) => isActive ? styles['active'] : ''}>
                   <img src={offer} alt='offer' />
                   Offer
                 </NavLink>
               </li>
 
               <li>
-                <NavLink className={`${styles['mob-navbar']} ${styles['mob-navbar-last']}`}>
+                <NavLink to='/logout' id={styles['mob-navbar']} className={styles['mob-navbar-last']}>
                   <img src={logout} alt='logout' />
                   Logout
                 </NavLink>

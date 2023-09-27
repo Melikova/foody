@@ -1,17 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import styles2 from 'assets/styles/global.css'
 import styles from 'components/common/EditModal/editmodal.module.css'
 import productImg from 'assets/images/foodImages/miniPizza.svg'
 import uploadImg from 'assets/icons/upload.svg'
 import closeBtn from 'assets/icons/closeBtn.svg'
-import Editselectbox from 'components/common/EditSelectBox/Editselectbox'
+import Editselectbox from 'components/common/EditSelectBox/Editselectbox';
+import { useSelector, useDispatch } from 'react-redux'
+import { closeModalEdit } from 'redux/features/modalSlice'
 
 const EditModal = () => {
+
+  const selEditModal = useSelector((state) => state.modal.isActive)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const htmlEl = document.querySelector('html')
+
+    if (selEditModal) htmlEl.style = "overflow:hidden"
+    else htmlEl.style = 'overflow:auto'
+
+  }, [selEditModal])
+
   return (
     <>
-      <div className={styles.overlay}>
-        <div className={styles['editmodal-container']}>
+      <div className={selEditModal ? styles.overlay : ''}>
+
+        <div className={selEditModal ? styles['show-editmodal'] : styles['editmodal-container']}>
           <div className={styles['editmodal-head']}>
-            <h3>Add restaurants</h3>
+            <h3>Edit product</h3>
           </div>
           <div className={styles["editmodal-top"]}>
             <div className={styles['editmodal-left-contain']}>
@@ -39,7 +55,7 @@ const EditModal = () => {
               <div className={styles['editmodal-right-bot']}>
                 <div className={styles['mob-restaurant-info']}>
                   <span>
-                    Add your Restaurants description and necessary information
+                    Add your Product description and necessary information
                   </span>
                 </div>
                 <form>
@@ -69,14 +85,17 @@ const EditModal = () => {
             <button className={styles['edit-update']}>Update Product</button>
           </div>
 
-          <div clasName={styles['close-contain']}>
-            <button className={styles['close-btn']}>
+          <div className={styles['close-contain']}>
+            <button onClick={() => dispatch(closeModalEdit())} className={selEditModal ? styles['close-btn'] : styles['hide-close-btn']}>
               <img className={styles['close-btn-img']} src={closeBtn} alt="close-button" />
             </button>
           </div>
 
         </div>
+
       </div>
+
+
     </>
   )
 }
